@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+<style>
+    body {
+    margin: 0;
+    }
+    .content{
+ margin-left:16%;
+ padding:1px 16px;
+ height:100%;
+ padding-top:4%;
+  /* position:fixed; */
+ font-family: 'Montserrat', sans-serif;
+ }
+</style>
+
+
+<div class = "content">
+
+    {% block content %}
+
+        
+        <img src="data:image/png;base64,{{chart}}" height = "400", width = "500" />
+        {% comment %} <img src="data:image/jpg;base64,{{bar}}" height = "400", width = "500" /> {% endcomment %}
+
+    {% endblock%}
+</div>
+
+
+

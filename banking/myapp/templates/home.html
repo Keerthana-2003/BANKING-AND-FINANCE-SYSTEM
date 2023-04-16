@@ -1,0 +1,88 @@
+{% extends "index.html"%}
+{% block content %}
+<style>
+    .box{
+        background-color: white;
+        width: 500px;
+        height: 300px;
+        padding: 50px;
+        margin: 20px;
+        border-radius: 30px;
+    }
+    .box1{
+        background-color: white;
+        width: 500px;
+        height: 300px;
+        padding: 50px;
+        margin: 20px;
+        border-radius: 30px;
+        margin-left:350px;
+    }
+    .box2{
+        background-color: white;
+        width: 500px;
+        height: 300px;
+        padding: 50px;
+        margin: 20px;
+        border-radius: 30px;
+        margin-left: 650px;
+        margin-top: -640px;
+    }
+    .circle {
+        background-color:#fff;
+        border:9px solid green;    
+        height:150px;
+        border-radius:50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+        width:150px;
+        margin-left:250px;
+    }
+    .circle1 {
+        background-color:#fff;
+        border:9px solid blue;    
+        height:150px;
+        border-radius:50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+        width:150px;
+        margin-left:250px;
+    }
+    .circle2 {
+        background-color:#fff;
+        border:9px solid red;    
+        height:150px;
+        border-radius:50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+        width:150px;
+        margin-left:250px;
+    }
+</style>
+<div class="box">
+ <h3 style="color: black;">DEPOSIT<h3>
+     <div class="circle">
+         <h3 style="color:black; margin-left:25px; margin-top: 50px">
+            {{totalcredit}}
+         </h3>
+        </div>
+</div>
+<div class="box1">
+    <h3 style="color: black;">SAVINGS<h3>
+        <div class="circle1">
+            <h3 style="color:black; margin-left:25px; margin-top: 50px">
+                {{balance}}
+                </h3>
+        </div>
+   </div>
+   <div class="box2">
+    <h3 style="color: black;">WITHDRAW<h3>
+        <div class="circle2">
+            <h3 style="color:black; margin-left:25px; margin-top: 50px">
+                {{totaldebit}}
+                </h3>
+        </div>
+   </div>
+
+{% endblock %}
+

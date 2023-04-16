@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multistep From</title>
+   <style>
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-image: linear-gradient(rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)),url(https://finance.univie.ac.at/fileadmin/_processed_/csm_web_Banking-and-Finance_Hauptbi_672df5bcac.jpg);
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        align-items: center;
+    }
+    
+    .container{
+        width: 450px;
+        height: 250px;
+        margin: 8% auto;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 1em;
+        position: relative;
+        overflow: hidden;
+    
+        box-shadow: -3px -3px 5px rgba(255,255,255,0.05),
+                    3px 3px 5px rgba(0,0,0,0.5);
+    }
+    
+    
+    h2{
+        text-align: center;
+        margin-bottom: 1.5em;
+        color: gray;
+        text-transform: capitalize;
+    }
+    h3{
+        
+        color: gray;
+    }
+    
+    
+    .container form{
+        width: 17em;
+        position: absolute;
+        top: 60px;
+        left: 80px;
+        transition: .5s all ease;
+        
+    }
+    
+    
+    form input{
+        width: 100%;
+        padding: 10px 5px;
+        margin: 0.7em 0;
+        border: 0;
+        color: cyan;
+        font-weight: 500;
+        border-bottom: 0.1em solid gray;
+        outline: none;
+        background: transparent;
+    }
+    
+    ::placeholder{
+        color: gray;
+    }
+    
+    .btn{
+        width: 180%;
+        margin: 1.5em  auto;
+        text-align: center;
+        margin-left: -100px;
+    }
+    
+    form button{
+        width: 45%;
+        height: 2.5em;
+        margin: 0 5px;
+        background: linear-gradient(50deg,blue,cyan);
+        border-radius: 5em;
+        border: 0;
+        outline: none;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1em;
+        font-style: bold;
+        letter-spacing: 0.2em;
+    }
+    
+    
+    #form2{
+        left: 450px;
+    }
+    
+    #form3{
+        left: 450px;
+    }
+    
+    .step_row{
+        width: 360px;
+        height: 40px;
+       
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        box-shadow:  0 -1px 5px -1px gray;
+        position: relative;
+    }
+    
+    .step_col{
+        width: 120px;
+        
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+    
+    #progress_bar{
+        position: absolute;
+        
+    
+        height: 100%;
+        width: 250px;
+        background: linear-gradient(50deg,blue,cyan);
+        transition: 0.5s all ease-in-out;
+    }
+    
+    #progress_bar::after{
+        content: "";
+        height: 0;
+        width: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        position: absolute;
+        right: -20px;
+        top: 0;
+        border-left: 20px solid cyan;
+    }
+    
+    
+   </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- form1 -->
+        <form action="" id="form1">
+            <h2> Account Created Successfully </h2>
+            <form action="login.html">
+            <div class="btn">
+                <a href="/login">
+                <button type="button" id="next" onclick="login.html" >
+                    Click Here to login
+                </button>
+            </a>
+                
+           
+            </div>
+        </form>
+            <div class="btn cta-2">
+                
+              </div>
+        </form>
+
+      
+    </script>
+
+
+</body>
+</html>

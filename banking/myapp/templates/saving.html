@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ <script>
+    var app = angular.module('plunker', []);
+
+    app.controller('MainCtrl', function($scope) {
+    
+      var cleanAccount = function() {
+        var account = {
+          name: 'Elias Wambugu',
+          startingBalace: 100.00,
+          runningBalance: 1000000
+        }
+        return account;
+      };
+      
+       var cleanTransaction = function() {
+        var transaction = {
+          type: 'Withdraw',
+          amount: 0.00,
+          description: ''
+        }
+    
+        return transaction;
+      };
+    
+      var transactions = [
+        ];
+    
+     
+    
+      $scope.transaction = cleanTransaction();
+      $scope.account = cleanAccount();
+    
+      $scope.transactionList = transactions;
+    
+      $scope.saveTransaction = function() {
+        var amount = parseFloat($scope.transaction.amount);
+        var num = parseFloat($scope.account.runningBalance);
+        var answer = 0;
+        if ($scope.transaction.type === 'Deposit') {
+          answer = num + amount
+        } else {
+          answer = num - amount
+        }
+        $scope.account.runningBalance = answer;
+    
+        $scope.transaction.amount = amount;
+        transactions.push($scope.transaction);
+        $scope.transaction = cleanTransaction();
+      };
+    
+    });
+    
+    
+    app.directive('moneywarn', function() {
+      var staticWarningLevel = .2;
+    
+      return {
+        restrict: 'A',
+        scope: {
+          val: '=moneywarn'
+        },
+        link: function(scope, element, attrs) {
+          scope.$watch('val', function(newValue) {
+            var startBalance = parseInt(attrs.startbalance);
+            var warningLevel = startBalance * staticWarningLevel;
+            if (newValue === warningLevel) {
+              element.addClass('alert-warning');
+               element.removeClass('alert-danger');
+            } else if (newValue < warningLevel) {
+              element.addClass('alert-danger');
+            } else {
+              element.removeClass('alert-warning');
+              element.removeClass('alert-danger');
+            }
+    
+          }, true);
+        }
+      }
+    
+    });
+ </script>
+ 
+</head>
+<body>
+    <html ng-app="plunker">
+
+        <head>
+          <meta charset="utf-8" />
+          <title>Elias' Bank Account</title>
+            <link data-require="bootstrap@*" data-semver="3.3.2" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+        
+          <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+          <script>
+            document.write('<base href="' + document.location + '" />');
+          </script>
+          <link rel="stylesheet" href="style.css" />
+          <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.0-rc.2/angular.js" data-semver="1.4.0-rc.2"></script>
+          <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+          <script data-require="bootstrap@*" data-semver="3.3.2" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+          <script src="app.js"></script>
+        </head>
+        
+        <body ng-controller="MainCtrl">
+          <div class="container">
+        
+            <h1 class="firstWord">Creative<span class="secondWord">Banking</span></h1>
+            <hr />
+            <!--<p>Hello {{account.name}}! You currently have a balance of: {{account.runningBalance | currency}}-->
+            <!--</p>-->
+            
+             <h4 class="alert alert-default" ng-bind-template="Hello {{account.name}} your balance is: {{account.runningBalance | currency}}" moneywarn="account.runningBalance" data-startbalance="{{account.startingBalace}}"></h4>
+            
+            <div class="row">
+              <div class="col-md-12">
+        
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Make a transaction</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-inline">
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="" ng-model='transaction.description'>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon">$</span>
+                          <input type="number" step="0.01" min=0 class="form-control" id="amount" placeholder="0.00" ng-model="transaction.amount">
+                        </div>
+                      </div>
+                      <select class="form-control" ng-model="transaction.type">
+                        <option value='Withdraw'>Withdraw</option>
+                        <option value='Deposit'>Deposit</option>
+                      </select>
+                      <button type="submit" class="btn btn-primary" ng-click="saveTransaction()">Save</button>
+                    </form>
+                  </div>
+                </div>
+        
+                <hr />
+                <p>
+                  <strong>Sort Transactions by:</strong>
+                  <select ng-model="transType" class="form-control">
+                    <option value=''>All</option>
+                    <option value='credit'>Deposit</option>
+                    <option value='debit'>Withdraw</option>
+                  </select>
+                </p>
+                <table class="table table-striped table-bordered table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="row in transactionList | filter: transType">
+                      <td ng-bind="row.type"></td>
+                      <td ng-bind="row.description"></td>
+                      <td ng-bind="row.amount | currency"></td>
+                    </tr>
+                  </tbody>
+        
+                </table>
+              </div>
+            </div>
+          </div>
+        </body>
+        
+        </html>
+         
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Banking Home</title>
+      <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <style>
+         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+         *{
+         margin: 0;
+         padding: 0;
+         list-style: none;
+         text-decoration: none;
+         box-sizing: border-box;
+         font-family: 'Montserrat', sans-serif;
+         }
+         body{
+         background: #e1ecf2;
+         }
+         .wrapper{
+         margin: 10px;
+         }
+         .wrapper .top_navbar{
+         width: calc(100% - 20px);
+         height: 60px;
+         display: flex;
+         position: fixed;
+         top: 10px;
+         }
+         .wrapper .top_navbar .hamburger{
+         width: 70px;
+         height: 100%;
+         background: #2e4ead;
+         padding: 15px 17px;
+         border-top-left-radius: 20px;
+         cursor: pointer;
+         }
+         .wrapper .top_navbar .hamburger div{
+         width: 35px;
+         height: 4px;
+         background: #92a6e2;
+         margin: 5px 0;
+         border-radius: 5px;
+         }
+         .wrapper .top_navbar .top_menu{
+         width: calc(100% - 70px);
+         height: 100%;
+         background: #fff;
+         border-top-right-radius: 20px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 0 20px;
+         box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+         }
+         .wrapper .top_navbar .top_menu .logo{
+         color: #2e4ead;
+         font-size: 20px;
+         font-weight: 700;
+         letter-spacing: 3px;
+         }
+         .wrapper .top_navbar .top_menu ul{
+         display: flex;
+         }
+         .wrapper .top_navbar .top_menu ul li a{
+         display: block;
+         margin: 0 10px;
+         width: 35px;
+         height: 35px;
+         line-height: 35px;
+         text-align: center;
+         border: 1px solid #2e4ead;
+         border-radius: 50%;
+         color: #2e4ead;
+         }
+         .wrapper .top_navbar .top_menu ul li a:hover{
+         background: #4360b5;
+         color: #fff;
+         }
+         .wrapper .top_navbar .top_menu ul li a:hover i{
+         color: #fff;
+         }
+         .wrapper .sidebar{
+         position: fixed;
+         top: 70px;
+         left: 10px;
+         background: #2e4ead;
+         width: 200px;
+         height: calc(100% - 80px);
+         border-bottom-left-radius: 20px;
+         transition: all 0.3s ease;
+         }
+         .wrapper .sidebar ul li a{
+         display: block;
+         padding: 20px;
+         color: #fff;
+         position: relative;
+         margin-bottom: 1px;
+         color: #92a6e2;
+         white-space: nowrap;
+         }
+         .wrapper .sidebar ul li a:before{
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 3px;
+         height: 100%;
+         background: #92a6e2;
+         display: none;
+         }
+         .wrapper .sidebar ul li a span.icon{
+         margin-right: 10px;
+         display: inline-block;
+         }
+         .wrapper .sidebar ul li a span.title{
+         display: inline-block;
+         }
+         .wrapper .sidebar ul li a:hover,
+         .wrapper .sidebar ul li a.active{
+         background: #4360b5;
+         color: #fff;
+         }
+         .wrapper .sidebar ul li a:hover:before,
+         .wrapper .sidebar ul li a.active:before{
+         display: block;
+         }
+         .wrapper .main_container{
+         width: (100% - 200px);
+         margin-top: 70px;
+         margin-left: 200px;
+         padding: 15px;
+         transition: all 0.3s ease;
+         }
+         .wrapper .main_container .item{
+         background: #fff;
+         margin-bottom: 10px;
+         padding: 15px;
+         font-size: 14px;
+         line-height: 22px;
+         }
+         .wrapper.collapse .sidebar{
+         width: 70px;
+         }
+         .wrapper.collapse .sidebar ul li a{
+         text-align: center; 
+         }
+         .wrapper.collapse .sidebar ul li a span.icon{
+         margin: 0;
+         }
+         .wrapper.collapse .sidebar ul li a span.title{
+         display: none;
+         }
+         .wrapper.collapse .main_container{
+         width: (100% - 70px);
+         margin-left: 70px;
+         }
+         .animation-area {
+         background: #121212;
+         width: 100%;
+         height: 780px;
+         border-radius: 1cm;
+         left: 200px;
+         }
+         .box-area {
+         border-radius: 10cm;
+         top: 0;
+         left: 200px;
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+         opacity:1;
+         }
+         .box-area div{
+           opacity:1;
+         }
+         .box-area li {
+         position: absolute;
+         display: block;
+         list-style: none;
+         width: 25px;
+         height: 25px;
+         background: #ccc;
+         animation: animate 30s linear infinite;
+         bottom: -100px;
+         opacity: 0.1;
+         }
+         .box-area li:nth-child(1) {
+         left: 86%;
+         width: 80px;
+         height: 80px;
+         animation-delay: 0s;
+         box-sizing: border-box;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(2) {
+         left: 12%;
+         width: 30px;
+         height: 30px;
+         animation-delay: 1.5s;
+         animation-duration: 10s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(3) {
+         left: 70%;
+         width: 100px;
+         height: 100px;
+         animation-delay: 5.5s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(4) {
+         left: 42%;
+         width: 150px;
+         height: 150px;
+         animation-delay: 0s;
+         animation-duration: 15s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(5) {
+         left: 65%;
+         width: 40px;
+         height: 40px;
+         animation-delay: 0s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(6) {
+         left: 15%;
+         width: 110px;
+         height: 110px;
+         animation-delay: 3.5s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(7) {
+         left: 86%;
+         width: 80px;
+         height: 80px;
+         animation-delay: 0s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(8) {
+         left: 12%;
+         width: 30px;
+         height: 30px;
+         animation-delay: 1.5s;
+         animation-duration: 10s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(9) {
+         left: 70%;
+         width: 100px;
+         height: 100px;
+         animation-delay: 5.5s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(10) {
+         left: 42%;
+         width: 150px;
+         height: 150px;
+         animation-delay: 0s;
+         animation-duration: 15s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(11) {
+         left: 65%;
+         width: 40px;
+         height: 40px;
+         animation-delay: 0s;
+         opacity: 0.2;
+         }
+         .box-area li:nth-child(12) {
+         left: 15%;
+         width: 110px;
+         height: 110px;
+         animation-delay: 3.5s;
+         opacity: 0.2;
+         }
+         @keyframes animate {
+         0% {
+         transform: translateY() rotate(360deg);
+         opacity: 0.2;
+         }
+         100% {
+         transform: translateY(-1000px) rotate(360deg);
+         opacity: 0;
+         }
+         }
+         .search-box{
+         position: absolute;
+         left: 1000px;
+         top:9px;
+         background: #2f3640;
+         height: 45px;
+         border-radius: 40px;
+         padding: 10px;
+         }
+         .search-box:hover > .search-txt{
+         width: 200px;
+         padding: 0,6px;
+         }
+         .search-btn{
+         color: #0b08ee;
+         float: right;
+         width: 10px;
+         height: 25px;
+         border-radius: 50%;
+         background: #2f3640;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         }
+         .search-txt{
+         border: none;
+         background: none;
+         outline: none;
+         float: left;
+         padding: 10;
+         color:white;
+         font-size: 15px;
+         transition: 0.4s;
+         line-height: 10px;
+         width: 0px;
+         margin-top: -10px
+         }
+      </style>
+      <script>
+         $(document).ready(function(){
+           $(".hamburger").click(function(){
+              $(".wrapper").toggleClass("collapse");
+           });
+         });
+      </script>
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="top_navbar">
+            <div class="hamburger">
+               <div class="one"></div>
+               <div class="two"></div>
+               <div class="three"></div>
+            </div>
+            <div class="top_menu">
+               <div class="logo">BANKING AND FINANCE</div>
+               <p>Welcome {{user.username}}</p>
+               <ul>
+                  
+                  <div class="search-box">
+                     <input class="search-txt" type="text" name="" class="search-txt1"placeholder="Type to search">
+                     <a class="search-btn" href="#">
+                     <i class="fas fa-search"></i>
+                     </a>
+                  </div>
+                  <li><a href="#">
+                     <i class="fas fa-bell"></i>
+                     </a>
+                  </li>
+                  <li><a href="#">
+                     <i class="fas fa-user"></i>
+                     </a>
+                  </li>
+                  <li><a href="/">
+                     <i class="fas fa-power-off"></i>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="sidebar">
+            <ul>
+              <li><a href="/index" class="{% if request.path == "/index/" %} active {% endif %}"><span class="icon"><i class="fas fa-house-user"></i></span><span class="title">HOME</span></a></li>
+              <li><a href="/trans" class="{% if request.path == "/trans/" %} active {% endif %}"><span class="icon"><i class="fas fa-file-video"></i></span><span class="title">TRANSACTIONS</span></a></li>
+               <li><a href="/graph" class="{% if request.path == "/graph/" %} active {% endif %}"><span class="icon"><i class="fas fa-chart-pie"></i></span><span class="title">GRAPHS</span></a></li>
+               <li><a href="/calender" class="{% if request.path == "/calender/" %} active {% endif %}"><span class="icon"><i class="fas fa-blog"></i></span><span class="title">CALENDER</span></a></li>
+               <li><a href="/contact" class="{% if request.path == "/contact/" %} active {% endif %}"><span class="icon"><i class="fas fa-phone-alt"></i></span><span class="title">CONTACT</span></a></li>
+            </ul>
+         </div>
+         <div class="animation-area">
+            <div class="box-area">
+               <div style="margin-top: 5%; margin-left: 14%;color: rgb(255, 255, 255);">
+                  
+                  {% block content %}
+                  {% endblock %}
+               </div>
+               <li></li><li></li><li></li><li></li><li></li><li></li>
+              </div>
+         </div>
+      </div>
+   </body>
+</html>

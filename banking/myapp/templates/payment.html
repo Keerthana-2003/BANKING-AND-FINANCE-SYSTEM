@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+{% block content %}
+  <style>
+
+    .input {
+      margin: 8%;
+      width: 60%;
+      padding: 15px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: none;
+      outline: none;
+      color:black;
+        border-radius: 1px;
+      background-color: #fff;
+      border-bottom: 1px solid rgb(5, 5, 5);
+        opacity:.8;
+    }
+    .input1 {
+      margin: 8%;
+      width: 75%;
+      padding: 15px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: none;
+      outline: none;
+      color:red;
+        border-radius: 1px;
+      background-color: #fff;
+      border-bottom: 1px solid rgb(5, 5, 5);
+        opacity:.8;
+    }
+    
+    .button{
+    width: 130px;
+    height: 35px;
+    background: #43425D 0% 0% no-repeat padding-box;
+    border: 1px solid #43425D;
+    border-radius: 4px;
+    opacity: 1;
+    color:white;
+    cursor: pointer;
+    outline: none;
+    transition: 0.5s ease;
+    }
+    .button:hover {
+    transform: scale(1.02);
+    }
+    .input {
+      margin: 8%;
+      width: 100%;
+      padding: 15px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: none;
+      outline: none;
+      color:black;
+        border-radius: 1px;
+      background-color: #fff;
+      border-bottom: 1px solid rgb(5, 5, 5);
+        opacity:.8;
+    }
+    .editbutton{
+      width: 130px;
+      height: 35px;
+      background: #f5cd01f1 0% 0% no-repeat padding-box;
+      border: 1px solid #43425D;
+      border-radius: 4px;
+      opacity: 1;
+      color:black;
+      cursor: pointer;
+      outline: none;
+      transition: 0.5s ease;
+      text-align: center;
+      font-family: montserrat;
+      }
+       .editbutton:hover {
+      transform: scale(1.02);
+      }
+    </style>
+    
+    
+    <body>
+      <form method="POST" >
+        {% csrf_token %}
+      <table>
+        {% for f in form.visible_fields %}
+       <tr><td>{{f.label_tag}}</td>
+      <td>{{f}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+      <div class="profile">
+    
+        <input type="submit" value="Insert Transaction" class="editbutton">
+      
+      </div>
+    </form>
+    
+    
+    </body>
+    </html>
+    {% endblock content %}

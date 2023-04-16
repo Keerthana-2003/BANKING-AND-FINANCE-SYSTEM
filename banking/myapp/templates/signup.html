@@ -1,0 +1,69 @@
+<style>
+
+.input {
+	margin: 8%;
+	width: 75%;
+	padding: 15px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
+	color:black;
+    border-radius: 1px;
+	background-color: #fff;
+	border-bottom: 1px solid rgb(5, 5, 5);
+    opacity:.8;
+}
+.input1 {
+	margin: 8%;
+	width: 75%;
+	padding: 15px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
+	color:red;
+    border-radius: 1px;
+	background-color: #fff;
+	border-bottom: 1px solid rgb(5, 5, 5);
+    opacity:.8;
+}
+
+.button{
+width: 130px;
+height: 35px;
+background: #43425D 0% 0% no-repeat padding-box;
+border: 1px solid #43425D;
+border-radius: 4px;
+opacity: 1;
+color:white;
+cursor: pointer;
+outline: none;
+transition: 0.5s ease;
+}
+.button:hover {
+transform: scale(1.02);
+}
+</style>
+
+
+<body>
+    <form method="POST" action="">
+        <div>
+        {% csrf_token %}
+         {% for f in form %}
+         {{f}}
+         {%endfor%}
+         
+         <br>
+         
+         <input class="show" type="checkbox" >
+        <label  style="text-decoration:none; color:black; font-family:montserret">I Agree with the Terms and Conditions</label><br><br>
+        <input type="submit" class="button" name="SignUp"><br><br>
+        <a href="/login" style="text-align: center;text-decoration: underline;font: normal normal normal 11px/20px Montserrat;color: #43425D;">Already have a account? Login Here!</a>
+        </div>
+    </form>
+
+
+</body>
+</html>
